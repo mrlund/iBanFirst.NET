@@ -57,7 +57,7 @@ namespace iBanFirst.NET.Entities
     }
 
 
-    public enum PaymentStatus
+    public enum TransactionStatus
     {
         all,
         planified,

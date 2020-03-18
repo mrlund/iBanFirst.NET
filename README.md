@@ -51,17 +51,17 @@ var payment = await client.Payments.Create(payment);
 * Task<iBanFirstApiResponse<WalletDetail\>> Get(string walletId);
 * Task<iBanFirstApiResponse<List<WalletList\>\>> List();
 
+**Financial Movements**
+* Task<iBanFirstApiResponse<FinancialMovement>> Get(string id);
+* Task<iBanFirstApiResponse<List<FinancialMovementList>>> List();
 
 **External Bank Accounts**
-
 * Task<iBanFirstApiResponse<ExternalBankAccount\>> Create(ExternalBankAccount externalBankAccount);
 * Task<iBanFirstApiResponse<DeleteResponse\>> Delete(string id);
 * Task<iBanFirstApiResponse<ExternalBankAccount\>> Get(string id);
 * Task<iBanFirstApiResponse<List<ExternalBankAccount\>\>> List();
 
-
 **Payments**
-
 * Task<iBanFirstApiResponse<Payment\>> Confirm(string id);
 * Task<iBanFirstApiResponse<Payment\>> Create(PaymentCreate payment);
 * Task<iBanFirstApiResponse<DeleteResponse\>> Delete(string id);
@@ -70,3 +70,19 @@ var payment = await client.Payments.Create(payment);
 * Task<iBanFirstApiResponse<List<Payment\>\>> List(PaymentStatus status);
 * Task<iBanFirstApiResponse<Payment\>> UploadProofOfTransaction(string id, byte[] file);
 
+**Trades**
+* Task<iBanFirstApiResponse<Trade\>> CreateQuote(TradeCreate trade);
+* Task<iBanFirstApiResponse<Trade\>> ExecuteTrade(TradeCreate trade);
+* Task<iBanFirstApiResponse<Trade\>> Get(string id);
+* Task<iBanFirstApiResponse<List<Trade\>\>> List(TransactionStatus status);
+* Task<iBanFirstApiResponse<List<Rate\>\>> RetrieveRates(string instruments);
+
+**Documents**
+* Task<iBanFirstApiResponse<Document\>> Get(string id);
+* Task<iBanFirstApiResponse<Document\>> GetRIB();
+* Task<iBanFirstApiResponse<List<DocumentList\>\>> List();
+* Task<iBanFirstApiResponse<Document\>> Upload(DocumentObject documentObject, DocumentType documentType, DocumentCreate document);
+
+**Logs**
+* Task<iBanFirstApiResponse<Log\>> Get(string nonce);
+* Task<iBanFirstApiResponse<List<Log\>\>> List();

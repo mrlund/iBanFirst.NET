@@ -15,7 +15,7 @@ namespace iBanFirst.NET.Tests
         public async Task CanDeserializePaymentsListResponse()
         {
             var client = new iBanFirstClient(new HttpClient(new FakeHttpMessageHandler<List<Payment>>()));
-            var tx = await client.Payments.List(PaymentStatus.all);
+            var tx = await client.Payments.List(TransactionStatus.all);
             Assert.NotNull(tx);
             Assert.IsType<List<Payment>>(tx.Result);
         }

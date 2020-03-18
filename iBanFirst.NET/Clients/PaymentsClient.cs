@@ -17,9 +17,9 @@ namespace iBanFirst.NET.Clients
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public async Task<iBanFirstApiResponse<List<Payment>>> List(PaymentStatus status)
+        public async Task<iBanFirstApiResponse<List<Payment>>> List(TransactionStatus status)
         {
-            return await _client.MakeApiRequest<List<Payment>>($"payments/{Enum.GetName(typeof(PaymentStatus), status)}");
+            return await _client.MakeApiRequest<List<Payment>>($"payments/{Enum.GetName(typeof(TransactionStatus), status)}");
         }
         public async Task<iBanFirstApiResponse<Payment>> Get(string id)
         {

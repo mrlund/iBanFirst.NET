@@ -11,7 +11,7 @@ namespace iBanFirst.NET.Interfaces
         Task<iBanFirstApiResponse<DeleteResponse>> Delete(string id);
         Task<iBanFirstApiResponse<Payment>> Get(string id);
         Task<iBanFirstApiResponse<PaymentOptionResponse>> GetPaymentOptions(string walletId, string externalBankAccountId);
-        Task<iBanFirstApiResponse<List<Payment>>> List(PaymentStatus status);
+        Task<iBanFirstApiResponse<List<Payment>>> List(TransactionStatus status);
         Task<iBanFirstApiResponse<Payment>> UploadProofOfTransaction(string id, byte[] file);
     }
 }
