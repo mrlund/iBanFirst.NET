@@ -42,7 +42,7 @@ namespace iBanFirst.NET.Tests
         {
             var responseMessage = new HttpResponseMessage(_isError ? HttpStatusCode.BadRequest : HttpStatusCode.OK)
             {
-                Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(source))
+                Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new { rootObj = source }))
             };
 
             return await Task.FromResult(responseMessage);
