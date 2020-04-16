@@ -93,7 +93,7 @@ namespace iBanFirst.NET.Clients
             {
                 _logger.LogError(errorString);
             }
-            if (string.IsNullOrEmpty(errorString))
+            if (string.IsNullOrEmpty(errorString) || request.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
                 return new ErrorResponse() { code = (int)request.StatusCode, message = request.ReasonPhrase };
             }
@@ -115,12 +115,14 @@ namespace iBanFirst.NET.Clients
             {
                 return default(T);
             }
-            if (typeof(T).IsGenericType && typeof(T).GetGenericTypeDefinition() == typeof(List<>))
-            {
-                return JsonConvert.DeserializeObject<T>(json);
-            }
             var jObject = JObject.Parse(json);
-            return jObject.ToObject<T>(_jsonSerializer);
+            var results = jObject.Children().First().First().ToObject<T>(_jsonSerializer);
+            return results;
+            //if (typeof(T).IsGenericType && typeof(T).GetGenericTypeDefinition() == typeof(List<>))
+            //{
+            //    //return JsonConvert.DeserializeObject<T>(json);
+            //}
+            //return jObject.ToObject<T>(_jsonSerializer);
         }
 
         private string GenerateRandomHexString(int digits)
