@@ -19,7 +19,7 @@ namespace iBanFirst.NET.Clients
 
         public async Task<iBanFirstApiResponse<List<Rate>>> RetrieveRates(string instruments)
         {
-            return await _client.MakeApiRequest<List<Rate>>($"rates/{instruments}");
+            return await _client.MakeApiRequest<List<Rate>>($"rates/{instruments}/");
         }
         public async Task<iBanFirstApiResponse<Trade>> CreateQuote(TradeCreate trade)
         {
@@ -31,12 +31,12 @@ namespace iBanFirst.NET.Clients
         }
         public async Task<iBanFirstApiResponse<List<Trade>>> List(TransactionStatus status)
         {
-            return await _client.MakeApiRequest<List<Trade>>($"trades/{Enum.GetName(typeof(TransactionStatus), status)}");
+            return await _client.MakeApiRequest<List<Trade>>($"trades/{Enum.GetName(typeof(TransactionStatus), status)}/");
         }
 
         public async Task<iBanFirstApiResponse<Trade>> Get(string id)
         {
-            return await _client.MakeApiRequest<Trade>($"trades/{id}");
+            return await _client.MakeApiRequest<Trade>($"trades/-{id}");
         }
 
     }

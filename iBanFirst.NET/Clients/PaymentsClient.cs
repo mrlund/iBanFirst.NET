@@ -19,23 +19,23 @@ namespace iBanFirst.NET.Clients
 
         public async Task<iBanFirstApiResponse<List<Payment>>> List(TransactionStatus status)
         {
-            return await _client.MakeApiRequest<List<Payment>>($"payments/{Enum.GetName(typeof(TransactionStatus), status)}");
+            return await _client.MakeApiRequest<List<Payment>>($"payments/_{Enum.GetName(typeof(TransactionStatus), status)}/");
         }
         public async Task<iBanFirstApiResponse<Payment>> Get(string id)
         {
-            return await _client.MakeApiRequest<Payment>($"payments/{id}");
+            return await _client.MakeApiRequest<Payment>($"payments/-{id}");
         }
         public async Task<iBanFirstApiResponse<Payment>> Create(PaymentCreate payment)
         {
-            return await _client.MakeApiRequest<Payment>("payments", RequestMethod.POST, payment);
+            return await _client.MakeApiRequest<Payment>("payments/", RequestMethod.POST, payment);
         }
         public async Task<iBanFirstApiResponse<Payment>> Confirm(string id)
         {
-            return await _client.MakeApiRequest<Payment>($"payments/{id}/confirm", RequestMethod.PUT);
+            return await _client.MakeApiRequest<Payment>($"payments/-{id}/confirm", RequestMethod.PUT);
         }
         public async Task<iBanFirstApiResponse<PaymentOptionResponse>> GetPaymentOptions(string walletId, string externalBankAccountId)
         {
-            return await _client.MakeApiRequest<PaymentOptionResponse>($"payments/options/{walletId}/{externalBankAccountId}");
+            return await _client.MakeApiRequest<PaymentOptionResponse>($"payments/options/-{walletId}/-{externalBankAccountId}");
         }
         public async Task<iBanFirstApiResponse<Payment>> UploadProofOfTransaction(string id, byte[] file)
         {
@@ -45,7 +45,7 @@ namespace iBanFirst.NET.Clients
 
         public async Task<iBanFirstApiResponse<DeleteResponse>> Delete(string id)
         {
-            return await _client.MakeApiRequest<DeleteResponse>($"payments/{id}", RequestMethod.DELETE);
+            return await _client.MakeApiRequest<DeleteResponse>($"payments/-{id}", RequestMethod.DELETE);
         }
 
     }

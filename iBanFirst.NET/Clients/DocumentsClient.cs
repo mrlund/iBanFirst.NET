@@ -20,7 +20,7 @@ namespace iBanFirst.NET.Clients
         }
         public async Task<iBanFirstApiResponse<Document>> Get(string id)
         {
-            return await _client.MakeApiRequest<Document>($"documents/{id}");
+            return await _client.MakeApiRequest<Document>($"documents/-{id}");
         }
 
         public async Task<iBanFirstApiResponse<Document>> GetRIB()
@@ -29,7 +29,7 @@ namespace iBanFirst.NET.Clients
         }
         public async Task<iBanFirstApiResponse<Document>> Upload(DocumentObject documentObject, DocumentType documentType, DocumentCreate document)
         {
-            return await _client.MakeApiRequest<Document>($"documents/upload/{Enum.GetName(typeof(DocumentObject), documentObject)}/{Enum.GetName(typeof(DocumentType), documentType)}", Utilities.RequestMethod.POST, document);
+            return await _client.MakeApiRequest<Document>($"documents/upload/{Enum.GetName(typeof(DocumentObject), documentObject)}/{Enum.GetName(typeof(DocumentType), documentType)}/", Utilities.RequestMethod.POST, document);
         }
     }
 }

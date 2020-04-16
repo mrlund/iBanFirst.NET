@@ -18,11 +18,11 @@ namespace iBanFirst.NET.Clients
 
         public async Task<iBanFirstApiResponse<List<FinancialMovementList>>> List()
         {
-            return await _client.MakeApiRequest<List<FinancialMovementList>>("financialMovements");
+            return await _client.MakeApiRequest<List<FinancialMovementList>>("financialMovements/");
         }
         public async Task<iBanFirstApiResponse<FinancialMovement>> Get(string id)
         {
-            return await _client.MakeApiRequest<FinancialMovement>($"financialMovements/{id}");
+            return await _client.MakeApiRequest<FinancialMovement>($"financialMovements/-{id}");
         }
 
 

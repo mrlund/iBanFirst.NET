@@ -19,19 +19,19 @@ namespace iBanFirst.NET.Clients
 
         public async Task<iBanFirstApiResponse<List<WalletList>>> List()
         {
-            return await _client.MakeApiRequest<List<WalletList>>("wallets");
+            return await _client.MakeApiRequest<List<WalletList>>("wallets/");
         }
         public async Task<iBanFirstApiResponse<WalletDetail>> Get(string walletId)
         {
-            return await _client.MakeApiRequest<WalletDetail>($"wallets/{walletId}");
+            return await _client.MakeApiRequest<WalletDetail>($"wallets/-{walletId}");
         }
         public async Task<iBanFirstApiResponse<WalletDetail>> Create(WalletCreate wallet)
         {
-            return await _client.MakeApiRequest<WalletDetail>("wallets", RequestMethod.POST, wallet);
+            return await _client.MakeApiRequest<WalletDetail>("wallets/", RequestMethod.POST, wallet);
         }
         public async Task<iBanFirstApiResponse<WalletBalance>> Balance(string walletId, DateTime date)
         {
-            return await _client.MakeApiRequest<WalletBalance>($"wallets/{walletId}/balance/{date:yyyy-MM-dd}");
+            return await _client.MakeApiRequest<WalletBalance>($"wallets/-{walletId}/balance/{date:yyyy-MM-dd}");
         }
     }
 }
