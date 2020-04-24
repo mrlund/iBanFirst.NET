@@ -6,9 +6,10 @@ namespace iBanFirst.NET.Entities
 {
     public class ErrorResponse
     {
-        public string message { get; set; }
-        public int code { get; set; }
-        public bool client { get; set; }
+        public string ErrorMessage { get; set; }
+        public string ErrorType { get; set; }
+        public string Link { get; set; }
+        public int ErrorCode { get; set; }
 
     }
 }

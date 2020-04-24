@@ -95,16 +95,17 @@ namespace iBanFirst.NET.Clients
             }
             if (string.IsNullOrEmpty(errorString) || request.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                return new ErrorResponse() { code = (int)request.StatusCode, message = request.ReasonPhrase };
+                return new ErrorResponse() { ErrorCode = (int)request.StatusCode, ErrorMessage = request.ReasonPhrase };
             }
             var token = JToken.Parse(errorString);
             if (token is JArray)
             {
-                return JsonConvert.DeserializeObject<List<ErrorResponse>>(errorString, _jsonSettings).FirstOrDefault();
+                return token["Error"].ToObject<List<ErrorResponse>>(_jsonSerializer).FirstOrDefault();
+                //return JsonConvert.DeserializeObject<List<ErrorResponse>>(errorString, _jsonSettings).FirstOrDefault();
             }
             else
             {
-                return JsonConvert.DeserializeObject<ErrorResponse>(errorString, _jsonSettings);
+                return token["Error"].ToObject<ErrorResponse>(_jsonSerializer);
             }
 
         }
